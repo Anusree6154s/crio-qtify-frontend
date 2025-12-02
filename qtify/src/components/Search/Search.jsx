@@ -55,15 +55,27 @@ function Search({ searchData, placeholder }) {
   };
 
   return (
-    <div style={{ position: "relative" }}>
-      <form className={styles.wrapper} onSubmit={(e) => onSubmit(e, value)}>
-        <div {...getRootProps()}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <form
+        className={styles.wrapper}
+        onSubmit={(e) => onSubmit(e, value)}
+        style={{ maxWidth:  "502px" , width: "100%" }}
+      >
+        <div {...getRootProps()} style={{ width: "100%" }}>
           <input
             name="album"
             className={styles.search}
             placeholder={placeholder}
             required
             {...getInputProps()}
+            style={{ width: "100%" }}
           />
         </div>
         <div>
