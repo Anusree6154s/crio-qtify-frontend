@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Card from "../Card/Card";
-import { Typography, Stack } from "@mui/material";
+import { Typography, Stack, Button } from "@mui/material";
 import styles from "./Section.module.css";
 import Carousel from "../Carousel/Carousel";
 
@@ -17,29 +17,34 @@ export default React.memo(function Section({
   songs = false,
   genres,
 }) {
+  const navigate = useNavigate();
   const [collapsed, setCollapse] = useState(true);
 
   const handleCollapse = () => {
     setCollapse(!collapsed);
   };
 
-  const navigate = useNavigate()
-
   return (
     <div>
       {type === "grid" ? (
         <Grid container spacing={4} className={styles.container}>
           <Grid item xs={12} className={styles.header}>
-            <span className={styles.title}>
+            <Typography
+              component="span"
+              className={styles.title}
+              sx={{ fontFamily: "Poppins" }}
+            >
               {songs ? title : `${title} Albums`}
-            </span>
+            </Typography>
             {!songs && (
-              <button
+              <Button
+                disableRipple
+                sx={{ textTransform: "none", fontFamily: "Poppins" }}
                 className={styles.collapseButton}
                 onClick={handleCollapse}
               >
                 {collapsed ? "Show All" : "Collapse"}
-              </button>
+              </Button>
             )}
           </Grid>
           {collapsed ? (

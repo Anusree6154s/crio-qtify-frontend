@@ -21,8 +21,11 @@ const style = {
   p: 4,
 };
 
-function Navbar({ searchData }) {
+function Navbar({ data }) {
   const [open, setOpen] = React.useState(false);
+
+  if(!data) return null
+
   return (
     <>
       <nav className={styles.navbar}>
@@ -31,7 +34,7 @@ function Navbar({ searchData }) {
         </Link>
         <Search
           placeholder="Search a song of your choice"
-          searchData={searchData}
+          searchData={data.new.concat(data.top)}
         />
         <CustomButton onClick={() => setOpen(true)}>Give Feedback</CustomButton>
       </nav>

@@ -20,33 +20,20 @@ import { MusicContext } from "../../MusicContext";
 
 import styles from "./AlbumDetails.module.css";
 
-function AlbumDetails() {
+function AlbumDetails({ data }) {
   const { id } = useParams();
   const [album, setAlbum] = useState(null);
   const [page, setPage] = useState(1);
-
   const navigate = useNavigate();
   const { selectedSong, setSelectedSong } = React.useContext(MusicContext);
 
-  const fetchAlbumData = async () => {
-    try {
-      const newData = await axios.get(
-        "https://qtify-backend-labs.crio.do/albums/new"
-      );
-      const topData = await axios.get(
-        "https://qtify-backend-labs.crio.do/albums/top"
-      );
-      const allData = [...newData.data, ...topData.data];
+  useEffect(() => {
+    if (id && data) {
+      const allData = [...data.new, ...data.top];
       const foundAlbum = allData.find((item) => item.id === id);
       setAlbum(foundAlbum);
-    } catch (error) {
-      console.error("Error fetching album data:", error);
     }
-  };
-
-  useEffect(() => {
-    fetchAlbumData();
-  }, [id]);
+  }, [id, data]);
 
   const handleChange = (event, value) => {
     setPage(value);
@@ -103,7 +90,10 @@ function AlbumDetails() {
               <TableRow>
                 <TableCell> Title </TableCell>
                 <TableCell> Artist </TableCell>
-                <TableCell> Duration </TableCell>
+                <TableCell sx={{ textAlign: "right !important" }}>
+                  {" "}
+                  Duration{" "}
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

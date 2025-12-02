@@ -16,9 +16,15 @@
 .collapseButton {
   background-color: transparent;
   border: none;
-  color: var(--color-primary);
-  font-weight: bold;
+  color: var(--color-primary) !important;
+  font-weight: 600;
   cursor: pointer;
+  font-size: 20px;
+}
+
+.collapseButton:hover{
+  background-color: transparent !important;
+  box-shadow: none;
 }
 
 .cardContainer {
