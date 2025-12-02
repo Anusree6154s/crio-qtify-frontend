@@ -16,19 +16,36 @@ export const fetchData = async (type) => {
   }
 };
 function Home({ data }) {
+  const [collapsed, setCollapse] = useState({ top: true, new: true });
+
   return (
     <div className={styles.home}>
       <Hero />
       {data && (
-        <Stack divider={<Divider flexItem />}>
-          <Section title="Top" data={{ data: data.top, type: "grid" }} />
-          <Section title="New" data={{ data: data.new, type: "grid" }} />
+        <Stack>
+          <Section
+            title="Top"
+            data={{ data: data.top, type: "grid" }}
+            setCollapse={setCollapse}
+            collapsed={collapsed.top}
+            albumType="top"
+          />
+          <Divider sx={{ display: collapsed?.top ? "none" : "block" }} />
+          <Section
+            title="New"
+            data={{ data: data.new, type: "grid" }}
+            setCollapse={setCollapse}
+            collapsed={collapsed.new}
+            albumType="new"
+          />
+          <Divider />
           <Section
             title="Songs"
             data={{ data: data.songs, type: "grid" }}
             songs={true}
             genres={data.genres.data}
           />
+          <Divider />
           <Section title="FAQs" data={{ data: data.faq.data, type: "faq" }} />
         </Stack>
       )}

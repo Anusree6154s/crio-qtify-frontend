@@ -54,7 +54,6 @@ function App() {
           <CircularProgress color="inherit" />
         </Backdrop>
       </Fade>
-      ;
       {data && (
         <div className="App">
           <Navbar data={data} />

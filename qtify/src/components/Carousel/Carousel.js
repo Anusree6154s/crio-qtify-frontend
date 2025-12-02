@@ -59,10 +59,23 @@ export default function Carousel({ data, songs = false, genres }) {
             onClick={() =>
               !songs ? handleNavigate(group.id) : handleSelectSong(group)
             }
-            style={{ cursor: "pointer" }}
+            style={{
+              cursor: "pointer",
+              display: "flex",
+              flexDirection: "column",
+              gap: "6px",
+            }}
           >
             <Card image={group.image} follows={group.follows} />
-            <Typography sx={{ color: "white", textAlign: "left" }}>
+            <Typography
+              component="span"
+              sx={{
+                color: "white",
+                textAlign: "left",
+                fontSize: "14px",
+                fontFamily: "Poppins ",
+              }}
+            >
               {group.title}
             </Typography>
           </SwiperSlide>
@@ -77,25 +90,23 @@ export default function Carousel({ data, songs = false, genres }) {
       {songs ? (
         <Box sx={{ width: "100%", typography: "body1" }}>
           <TabContext value={value}>
-            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-              <TabList
-                onChange={handleChange}
-                aria-label="lab API tabs example"
-                TabIndicatorProps={{
-                  style: { backgroundColor: "var(--color-primary)" },
-                }}
-              >
-                <Tab label="All" value="all" style={{ color: "white" }} />
-                {genres?.map((genre, index) => (
-                  <Tab
-                    key={index}
-                    label={genre?.label}
-                    value={genre?.key}
-                    style={{ color: "white" }}
-                  />
-                ))}
-              </TabList>
-            </Box>
+            <TabList
+              onChange={handleChange}
+              aria-label="lab API tabs example"
+              TabIndicatorProps={{
+                style: { backgroundColor: "var(--color-primary)" },
+              }}
+            >
+              <Tab label="All" value="all" style={{ color: "white" }} />
+              {genres?.map((genre, index) => (
+                <Tab
+                  key={index}
+                  label={genre?.label}
+                  value={genre?.key}
+                  style={{ color: "white" }}
+                />
+              ))}
+            </TabList>
             <TabPanel value="all">{memoizedSwiper(data)}</TabPanel>
             {genres?.map((genre) => (
               <TabPanel key={genre.key} value={genre.key}>

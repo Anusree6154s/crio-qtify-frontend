@@ -84,9 +84,7 @@ function Search({ searchData, placeholder }) {
               <ListItem
                 key={option.slug}
                 {...getOptionProps({ option, index })}
-                onClick={() => {
-                  onSubmit(null, option);
-                }}
+                onClick={() => navigate(`/albumdetails/${option.id}`)}
                 className={styles.listElement}
               >
                 <Stack sx={{ textAlign: "left", width: "100%" }}>

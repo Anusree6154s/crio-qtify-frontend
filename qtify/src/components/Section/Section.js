@@ -16,13 +16,11 @@ export default React.memo(function Section({
   data: { data, type },
   songs = false,
   genres,
+  setCollapse,
+  collapsed = true,
+  albumType,
 }) {
   const navigate = useNavigate();
-  const [collapsed, setCollapse] = useState(true);
-
-  const handleCollapse = () => {
-    setCollapse(!collapsed);
-  };
 
   return (
     <div>
@@ -41,7 +39,11 @@ export default React.memo(function Section({
                 disableRipple
                 sx={{ textTransform: "none", fontFamily: "Poppins" }}
                 className={styles.collapseButton}
-                onClick={handleCollapse}
+                onClick={() => {
+                  if (albumType) {
+                    setCollapse((prev) => ({ ...prev, top: !prev[albumType] }));
+                  }
+                }}
               >
                 {collapsed ? "Show All" : "Collapse"}
               </Button>
@@ -58,9 +60,19 @@ export default React.memo(function Section({
                 key={index}
                 className={styles.cardContainer}
                 onClick={() => navigate(`/albumdetails/${group.id}`)}
+                sx={{
+                  textAlign: "left",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "6px",
+                }}
               >
                 <Card image={group.image} follows={group.follows} />
-                <Typography className={styles.cardTitle}>
+                <Typography
+                  className={styles.cardTitle}
+                  component="span"
+                  sx={{ fontFamily: "Poppins !important" }}
+                >
                   {group.title}
                 </Typography>
               </Grid>
@@ -72,7 +84,11 @@ export default React.memo(function Section({
           <h2>{title}</h2>
           <Stack className={styles.faqContainer} spacing={1}>
             {data.map((faq, index) => (
-              <Accordion key={index} className={styles.faqAccordion}>
+              <Accordion
+                key={index}
+                className={styles.faqAccordion}
+                
+              >
                 <AccordionSummary
                   expandIcon={
                     <ExpandMoreIcon sx={{ color: "var(--color-primary)" }} />

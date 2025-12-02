@@ -10,7 +10,7 @@
 .title {
   color: #fff;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 20px !important;
 }
 
 .collapseButton {
@@ -19,10 +19,10 @@
   color: var(--color-primary) !important;
   font-weight: 600;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 20px !important;
 }
 
-.collapseButton:hover{
+.collapseButton:hover {
   background-color: transparent !important;
   box-shadow: none;
 }
@@ -34,7 +34,8 @@
 .cardTitle {
   color: white;
   text-align: left;
-  font-size: 14px;
+  font-size: 14px !important;
+  font-family: "Poppins !important";
 }
 
 h2 {
@@ -46,14 +47,16 @@ h2 {
 }
 
 .faqAccordion {
-    border: 1px solid white;
-  border-radius: 5px;
+  border: 1px solid white;
+  border-radius: 10px !important;
   overflow: hidden;
+  background: white!important;
 }
 
 .faqAccordionSummary {
-  background-color: var(--color-black);
-  color: white;
+  color: white !important;
+  border-radius: 10px !important;
+  background: var(--color-black) !important;
 }
 
 .faqAccordionDetails {

@@ -1,13 +1,13 @@
+import { Close } from "@mui/icons-material";
+import { Box, Button, Stack, Typography } from "@mui/material";
+import Modal from "@mui/material/Modal";
+import TextField from "@mui/material/TextField";
 import React from "react";
 import { Link } from "react-router-dom";
-import CustomButton from "../Button/Button"; // Correct import for your custom button
+import CustomButton from "../Button/Button";
 import Logo from "../Logo/Logo";
 import Search from "../Search/Search";
 import styles from "./Navbar.module.css";
-
-import Modal from "@mui/material/Modal";
-import TextField from "@mui/material/TextField";
-import { Box, Stack, Button } from "@mui/material";
 
 const style = {
   position: "absolute",
@@ -24,7 +24,7 @@ const style = {
 function Navbar({ data }) {
   const [open, setOpen] = React.useState(false);
 
-  if(!data) return null
+  if (!data) return null;
 
   return (
     <>
@@ -47,9 +47,51 @@ function Navbar({ data }) {
         className={styles.modal}
       >
         <Box sx={style}>
-          <button onClick={() => setOpen(false)}>x</button>
-          <Stack spacing={2} alignItems="center" className={styles.stack}>
-            <h3>Feedback</h3>
+          <Stack
+            alignItems="center"
+            className={styles.stack}
+            sx={{
+              gap: "33px",
+              // click state
+              "& label.Mui-focused": {
+                color: "var(--color-primary)",
+              },
+              "& .MuiOutlinedInput-root": {
+                "&.Mui-focused fieldset": {
+                  borderColor: "var(--color-primary)",
+                },
+              },
+              "& .MuiInputBase-input.Mui-focused": {
+                color: "var(--color-primary)",
+              },
+
+              // hover state
+              "& .MuiOutlinedInput-root:hover fieldset": {
+                borderColor: "var(--color-primary)",
+              },
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                position: "relative",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: "16px",
+                  fontWeight: 600,
+                  fontFamily: "Poppins",
+                }}
+              >
+                Feedback
+              </Typography>
+              <Close
+                onClick={() => setOpen(false)}
+                sx={{ position: "absolute", right: 0, cursor: "pointer" }}
+              />
+            </Box>
             <TextField
               id="name"
               label="Full Name"
@@ -74,8 +116,29 @@ function Navbar({ data }) {
               variant="outlined"
               size="small"
               multiline
+              sx={{
+                "& .MuiInputBase-input": {
+                  minHeight: "136px",
+                },
+              }}
             />
-            <Button variant="contained">Submit Feedback</Button>
+            <Button
+              variant="contained"
+              sx={{
+                width: "192",
+                height: "53",
+                borderRadius: "12px",
+                px: "14px",
+                py: "13px",
+                boxShadow: "none",
+                fontFamily: "Poppins",
+                fontSize: "18px",
+                textTransform: "none",
+                fontWeight: "600 !important",
+              }}
+            >
+              Submit Feedback
+            </Button>
           </Stack>
         </Box>
       </Modal>
