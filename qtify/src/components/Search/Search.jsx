@@ -1,11 +1,10 @@
-import React from "react";
-import styles from "./Search.module.css";
-import { ReactComponent as SearchIcon } from "../../assets/search-icon.svg";
 import { useAutocomplete } from "@mui/base/useAutocomplete";
-import { Box, fontFamily, styled } from "@mui/system";
-import { truncate } from "../../helpers/helpers";
-import { useNavigate } from "react-router-dom";
 import { ListItem, Stack, Typography } from "@mui/material";
+import { Box, styled } from "@mui/system";
+import { useNavigate } from "react-router-dom";
+import { ReactComponent as SearchIcon } from "../../assets/search-icon.svg";
+import { truncate } from "../../helpers/helpers";
+import styles from "./Search.module.css";
 
 const Listbox = styled("ul")({
   width: "100%",

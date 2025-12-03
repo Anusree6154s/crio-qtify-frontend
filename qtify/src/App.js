@@ -1,12 +1,11 @@
+import { Box } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import AlbumDetails from "./components/AlbumDetails/AlbumDetails";
-import Home from "./components/Home/Home";
+import Loader from "./components/Loader/Loader";
 import Navbar from "./components/Navbar/Navbar";
+import AppRoutes from "./components/AppRoutes/AppRoutes";
 import { MusicContext } from "./MusicContext";
-import { Backdrop, CircularProgress, Fade } from "@mui/material";
 
 export const fetchData = async (path) => {
   try {
@@ -46,25 +45,12 @@ function App() {
 
   return (
     <MusicContext.Provider value={{ selectedSong, setSelectedSong }}>
-      <Fade in={!data} timeout={300}>
-        <Backdrop
-          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 3 }}
-          open={!data}
-        >
-          <CircularProgress color="inherit" />
-        </Backdrop>
-      </Fade>
+      <Loader />
       {data && (
-        <div className="App">
+        <Box className="App">
           <Navbar data={data} />
-          <Routes>
-            <Route path="/" element={<Home data={data} />} />
-            <Route
-              path="/albumdetails/:id"
-              element={<AlbumDetails data={data} />}
-            />
-          </Routes>
-        </div>
+          <AppRoutes data={data} />
+        </Box>
       )}
     </MusicContext.Provider>
   );

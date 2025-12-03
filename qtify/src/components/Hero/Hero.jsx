@@ -1,22 +1,36 @@
-import React from "react";
+import { Box, Typography } from "@mui/material";
 import styles from "./Hero.module.css";
 
 function Hero() {
-    return (
-        <div className={styles.hero}>
-            <div>
-                <h1>100 Thousand Songs, ad-free</h1>
-                <h1>Over thousands podcast episodes</h1>
-            </div>
-            <div>
-                <img
-                    src={require("../../assets/hero_headphones.png")}
-                    width={212}
-                    alt="headphones"
-                />
-            </div>
-        </div>
-    );
+  return (
+    <Box
+      className={styles.hero}
+      sx={{ display: "flex", gap: "45px", alignItems: "center" }}
+    >
+      <Box>
+        <Typography
+          variant="h6"
+          sx={{ fontFamily: "Poppins ", fontWeight: "600" }}
+        >
+          100 Thousand Songs, ad-free
+        </Typography>
+        <Typography
+          variant="h6"
+          sx={{ fontFamily: "Poppins ", fontWeight: "600" }}
+        >
+          Over thousands podcast episodes
+        </Typography>
+      </Box>
+      <Box>
+        <Box
+          component="img"
+          src={require("../../assets/hero_headphones.png")}
+          width={160}
+          alt="headphones"
+        />
+      </Box>
+    </Box>
+  );
 }
 
 export default Hero;
