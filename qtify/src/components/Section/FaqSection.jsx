@@ -1,18 +1,18 @@
+import { ExpandMore } from "@mui/icons-material";
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Stack,
-  Typography,
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    Stack,
+    Typography
 } from "@mui/material";
 import styles from "./Section.module.css";
-import { ExpandMore } from "@mui/icons-material";
 
 export default function FaqSection({ title, data }) {
   return (
-    <Box>
+    <Stack sx={{ mb: 6, mx: { xs: 2, sm: 10 } }} spacing={2}>
       <Typography component="h2">{title}</Typography>
+
       <Stack className={styles.faqContainer} spacing={1}>
         {data?.map((faq, index) => (
           <Accordion key={index} className={styles.faqAccordion}>
@@ -30,8 +30,6 @@ export default function FaqSection({ title, data }) {
           </Accordion>
         ))}
       </Stack>
-
-      <br />
-    </Box>
+    </Stack>
   );
 }

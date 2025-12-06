@@ -52,6 +52,7 @@ h2 {
 
 .faqContainer {
   margin: 0% 10%;
+  font-size: var(--font-size-base);
 }
 
 .faqAccordion {
@@ -65,6 +66,7 @@ h2 {
   color: white !important;
   border-radius: 10px !important;
   background: var(--color-black) !important;
+  text-align: left;
 }
 
 .faqAccordionDetails {
