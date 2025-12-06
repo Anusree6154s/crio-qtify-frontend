@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { MusicContext } from "../../MusicContext";
-import Card from "../Card/Card" ;
+import Card from "../Card/Card";
 import "./Carousel.css";
 
 function CardSwiper({ data, songs }) {
@@ -18,12 +18,15 @@ function CardSwiper({ data, songs }) {
     <Swiper
       slidesPerView={1}
       breakpoints={{
-        280: { slidesPerView: 2, spaceBetween: 30 },
-        400: { slidesPerView: 3, spaceBetween: 30 },
-        668: { slidesPerView: 5, spaceBetween: 30 },
-        1024: { slidesPerView: 7, spaceBetween: 30 },
+        321: { slidesPerView: 2, spaceBetween: 30 },
+        426: { slidesPerView: 3, spaceBetween: 30 },
+        668: { slidesPerView: 4, spaceBetween: 30 },
+        800: { slidesPerView: 5, spaceBetween: 30 },
+        1024: { slidesPerView: 6, spaceBetween: 30 },
+        1440: { slidesPerView: 7, spaceBetween: 30 },
+        1640: { slidesPerView: 8  , spaceBetween: 30 },
       }}
-      spaceBetween={10}
+      spaceBetween={10}   
       loop={true}
       navigation={true}
       modules={[Navigation]}

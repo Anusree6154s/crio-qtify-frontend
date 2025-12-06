@@ -11,16 +11,18 @@ export default function StaticGrid({ data }) {
   return data.map((group, index) => (
     <Grid
       item
-      lg={12 / 7}
-      md={12 / 5}
-      sm={3}
       key={index}
       className={styles.cardContainer}
       onClick={() => navigate(`/albumdetails/${group.id}`)}
       sx={(theme) => ({
         [theme.breakpoints.down(320)]: { width: "100%" },
         [theme.breakpoints.between(321, 425)]: { width: "50%" },
-        [theme.breakpoints.between(426, 565)]: { width: "33%" },
+        [theme.breakpoints.between(426, 667)]: { width: "33%" },
+        [theme.breakpoints.between(668, 799)]: { width: "25%" },
+        [theme.breakpoints.between(800, 1023)]: { width: "20%" },
+        [theme.breakpoints.between(1024, 1439)]: { width: "16.66%" },
+        [theme.breakpoints.between(1440, 1639)]: { width: "14.28%" },
+        [theme.breakpoints.up(1640)]: { width: "12.5%" },
       })}
     >
       <Card image={group.image} follows={group.follows} />
