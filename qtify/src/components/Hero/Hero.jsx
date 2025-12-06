@@ -6,19 +6,15 @@ function Hero() {
   return (
     <Box
       className={styles.hero}
-      sx={{ display: "flex", gap: "45px", alignItems: "center" }}
+      sx={{
+        flexDirection: { sm: "row", xs: "column" },
+        gap: { sm: "45px", xs: "0px" },
+        paddingTop: { sm: "20px", xs: "40px !important"  },
+      }}
     >
       <Box>
-        <Typography
-          variant="h6"
-        >
-          100 Thousand Songs, ad-free
-        </Typography>
-        <Typography
-          variant="h6"
-        >
-          Over thousands podcast episodes
-        </Typography>
+        <Typography variant="h6">100 Thousand Songs, ad-free</Typography>
+        <Typography variant="h6">Over thousands podcast episodes</Typography>
       </Box>
       <Box component="img" src={HeroImg} width={160} alt="headphones" />
     </Box>
