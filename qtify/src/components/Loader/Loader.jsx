@@ -1,6 +1,6 @@
 import { Backdrop, CircularProgress, Fade } from "@mui/material";
 
-export default function Loader(data) {
+export default function Loader({ data }) {
   return (
     <Fade in={!data} timeout={300}>
       <Backdrop

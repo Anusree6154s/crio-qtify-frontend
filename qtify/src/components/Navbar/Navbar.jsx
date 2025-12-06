@@ -3,7 +3,6 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import React from "react";
-import { Link } from "react-router-dom";
 import CustomButton from "../Button/Button";
 import Logo from "../Logo/Logo";
 import Search from "../Search/Search";
@@ -28,16 +27,14 @@ function Navbar({ data }) {
 
   return (
     <>
-      <nav className={styles.navbar}>
-        <Link to="/">
-          <Logo />
-        </Link>
+      <Box component="nav" className={styles.navbar}>
+        <Logo />
         <Search
           placeholder="Search a song of your choice"
           searchData={data.new.concat(data.top)}
         />
         <CustomButton onClick={() => setOpen(true)}>Give Feedback</CustomButton>
-      </nav>
+      </Box>
 
       <Modal
         open={open}

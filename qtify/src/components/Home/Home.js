@@ -43,10 +43,10 @@ function Home({ data }) {
             title="Songs"
             data={{ data: data.songs, type: "grid" }}
             songs={true}
-            genres={data.genres.data}
+            genres={data.genres?.data}
           />
           <Divider />
-          <Section title="FAQs" data={{ data: data.faq.data, type: "faq" }} />
+          <Section title="FAQs" data={{ data: data.faq?.data, type: "faq" }} />
         </Stack>
       )}
       <MusicBar />

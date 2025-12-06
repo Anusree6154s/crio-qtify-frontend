@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Card from "../Card/Card";
-import { Typography, Stack, Button } from "@mui/material";
+import { Typography, Stack, Button, Box } from "@mui/material";
 import styles from "./Section.module.css";
 import Carousel from "../Carousel/Carousel";
 
@@ -10,6 +10,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useNavigate } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 export default React.memo(function Section({
   title,
@@ -23,7 +24,8 @@ export default React.memo(function Section({
   const navigate = useNavigate();
 
   return (
-    <div>
+    <>
+      <Loader data={data} />;
       {type === "grid" ? (
         <Grid container spacing={4} className={styles.container}>
           <Grid item xs={12} className={styles.header}>
@@ -80,15 +82,11 @@ export default React.memo(function Section({
           )}
         </Grid>
       ) : (
-        <div>
-          <h2>{title}</h2>
+        <Box>
+          <Typography component="h2">{title}</Typography>
           <Stack className={styles.faqContainer} spacing={1}>
-            {data.map((faq, index) => (
-              <Accordion
-                key={index}
-                className={styles.faqAccordion}
-                
-              >
+            {data?.map((faq, index) => (
+              <Accordion key={index} className={styles.faqAccordion}>
                 <AccordionSummary
                   expandIcon={
                     <ExpandMoreIcon sx={{ color: "var(--color-primary)" }} />
@@ -107,8 +105,8 @@ export default React.memo(function Section({
           </Stack>
 
           <br />
-        </div>
+        </Box>
       )}
-    </div>
+    </>
   );
 });

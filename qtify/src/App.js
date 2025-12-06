@@ -36,7 +36,6 @@ function App() {
           fetchedData[item.type] = data;
         })
       );
-      // After all states are set
       setData(fetchedData);
     };
 
@@ -45,7 +44,7 @@ function App() {
 
   return (
     <MusicContext.Provider value={{ selectedSong, setSelectedSong }}>
-      <Loader />
+      <Loader data={data} />
       {data && (
         <Box className="App">
           <Navbar data={data} />
