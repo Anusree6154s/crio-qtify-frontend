@@ -16,12 +16,12 @@ export const fetchData = async (type) => {
   }
 };
 function Home({ data }) {
-  const [collapsed, setCollapse] = useState({ top: true, new: true });
+  const [collapsed, setCollapsed] = useState({ top: true, new: true });
 
   return (
     <Box className={styles.home}>
       <Hero />
-      <Albums data={data} setCollapse={setCollapse} collapsed={collapsed} />
+      <Albums data={data} setCollapsed={setCollapsed} collapsed={collapsed} />
       <MusicBar />
     </Box>
   );

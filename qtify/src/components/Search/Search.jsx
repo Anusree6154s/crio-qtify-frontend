@@ -13,7 +13,6 @@ function Search({ searchData, placeholder, sx, maxWidth }) {
 
   const {
     getRootProps,
-    getInputLabelProps,
     value,
     getInputProps,
     getListboxProps,
@@ -23,6 +22,7 @@ function Search({ searchData, placeholder, sx, maxWidth }) {
     id: "use-autocomplete-demo",
     options: searchData || [],
     getOptionLabel: (option) => option.title,
+    getOptionKey: (option) => option.id,
   });
 
   const navigate = useNavigate();
@@ -48,42 +48,42 @@ function Search({ searchData, placeholder, sx, maxWidth }) {
       <Box
         sx={{
           width: "100%",
-          maxWidth: { md: "502px", xs: "400px" },
           transition: "max-width 0.3s ease",
-          ...maxWidth
+          ...maxWidth,
         }}
         ref={searchRef}
       >
-        <Box
-          component="form"
-          className={styles.wrapper}
-          onSubmit={(e) => onSubmit(e, value)}
-        >
-          <InputBase
-            name="album"
-            className={styles.search}
-            placeholder={placeholder}
-            required
-            {...getRootProps()}
-            {...getInputProps()}
-            {...getInputLabelProps()}
-          />
-          <IconButton type="submit" className={styles.searchButton}>
-            <Box
-              component="img"
-              src={SearchIcon}
-              alt="search-icon"
-              sx={{ height: "18px" }}
+        <Box {...getRootProps()}>
+          <Box
+            component="form"
+            className={styles.wrapper}
+            onSubmit={(e) => onSubmit(e, value)}
+          >
+            <InputBase
+              name="album"
+              className={styles.search}
+              placeholder={placeholder}
+              inputComponent="input"
+              required
+              inputProps={getInputProps()}
             />
-          </IconButton>
-        </Box>
+            <IconButton type="submit" className={styles.searchButton}>
+              <Box
+                component="img"
+                src={SearchIcon}
+                alt="search-icon"
+                sx={{ height: "18px" }}
+              />
+            </IconButton>
+          </Box>
 
-        <DropDown
-          getListboxProps={getListboxProps}
-          groupedOptions={groupedOptions}
-          getOptionProps={getOptionProps}
-          searchWidth={searchWidth}
-        />
+          <DropDown
+            getListboxProps={getListboxProps}
+            groupedOptions={groupedOptions}
+            getOptionProps={getOptionProps}
+            searchWidth={searchWidth}
+          />
+        </Box>
       </Box>
     </Box>
   );

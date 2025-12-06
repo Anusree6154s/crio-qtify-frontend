@@ -8,19 +8,18 @@ export default function CardSection({
   songs,
   title,
   albumType,
-  setCollapse,
+  setCollapsed,
   collapsed,
   data,
   genres,
 }) {
-
   return (
     <Grid container spacing={4} className={styles.container}>
       <CardSectionHeader
         songs={songs}
         title={title}
         albumType={albumType}
-        setCollapse={setCollapse}
+        setCollapsed={setCollapsed}
         collapsed={collapsed}
       />
 

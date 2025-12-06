@@ -5,7 +5,7 @@ export default function CardSectionHeader({
   songs,
   title,
   albumType,
-  setCollapse,
+  setCollapsed,
   collapsed,
 }) {
   return (
@@ -20,7 +20,7 @@ export default function CardSectionHeader({
           className={styles.collapseButton}
           onClick={() => {
             if (albumType) {
-              setCollapse((prev) => ({ ...prev, top: !prev[albumType] }));
+              setCollapsed((prev) => ({ ...prev, [albumType]: !prev[albumType] }));
             }
           }}
         >

@@ -1,15 +1,15 @@
 import { Divider, Stack } from "@mui/material";
 import Section from "../Section/Section";
 
-export default function Albums({ data, setCollapse, collapsed }) {
+export default function Albums({ data, setCollapsed, collapsed }) {
   if (!data) return null;
-  
+
   return (
     <Stack>
       <Section
         title="Top"
         data={{ data: data.top, type: "grid" }}
-        setCollapse={setCollapse}
+        setCollapsed={setCollapsed}
         collapsed={collapsed.top}
         albumType="top"
       />
@@ -17,7 +17,7 @@ export default function Albums({ data, setCollapse, collapsed }) {
       <Section
         title="New"
         data={{ data: data.new, type: "grid" }}
-        setCollapse={setCollapse}
+        setCollapsed={setCollapsed}
         collapsed={collapsed.new}
         albumType="new"
       />

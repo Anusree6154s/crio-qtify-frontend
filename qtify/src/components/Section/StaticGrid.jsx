@@ -18,21 +18,13 @@ export default function StaticGrid({ data }) {
       className={styles.cardContainer}
       onClick={() => navigate(`/albumdetails/${group.id}`)}
       sx={(theme) => ({
-        textAlign: "left",
-        display: "flex",
-        flexDirection: "column",
-        gap: "6px",
         [theme.breakpoints.down(320)]: { width: "100%" },
         [theme.breakpoints.between(321, 425)]: { width: "50%" },
         [theme.breakpoints.between(426, 565)]: { width: "33%" },
       })}
     >
       <Card image={group.image} follows={group.follows} />
-      <Typography
-        className={styles.cardTitle}
-        component="span"
-        sx={{ fontFamily: "Poppins !important" }}
-      >
+      <Typography className={styles.cardTitle} component="span">
         {group.title}
       </Typography>
     </Grid>

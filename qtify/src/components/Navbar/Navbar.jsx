@@ -33,11 +33,13 @@ function Navbar({ data }) {
               pointerEvents: { sm: "auto", xs: "none" },
               transition: "opacity 0.05s ease",
             }}
+            maxWidth={{ maxWidth: { md: "502px", xs: "400px" } }}
           />
           <CustomButton onClick={() => setOpen(true)}>
             Give Feedback
           </CustomButton>
         </Box>
+
         <Search
           placeholder="Search an album of your choice"
           searchData={data.new.concat(data.top)}

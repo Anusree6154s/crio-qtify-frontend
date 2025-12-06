@@ -16,7 +16,7 @@
   color: rgb(0, 0, 0, 0.6);
   opacity: 1;
   font-family: "Poppins";
-  font-size: 13px;
+  font-size: var(--font-size-base);
 }
 
 .wrapper {
@@ -36,12 +36,15 @@
   background-color: var(--color-secondary) !important;
 }
 
-
-
 .listElement {
   padding: 10px 15px;
   display: flex;
   justify-content: space-between;
+  cursor: default !important;
+}
+
+.listElement:hover {
+  background-color: rgb(255, 255, 255, 0.15);
 }
 
 .image {

@@ -8,21 +8,19 @@ export default React.memo(function Section({
   data: { data, type },
   songs = false,
   genres,
-  setCollapse,
+  setCollapsed,
   collapsed = true,
   albumType,
 }) {
-
   return (
     <>
       <Loader data={data} />;
-
       {type === "grid" ? (
         <CardSection
           songs={songs}
           title={title}
           albumType={albumType}
-          setCollapse={setCollapse}
+          setCollapsed={setCollapsed}
           collapsed={collapsed}
           data={data}
           genres={genres}

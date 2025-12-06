@@ -29,74 +29,72 @@ const Listbox = styled("ul")({
   scrollbarWidth: "thin",
 });
 
-    export default function DropDown({
-    getListboxProps,
-    groupedOptions,
-    getOptionProps,
-    searchWidth,
-    }) {
-    const navigate = useNavigate();
+export default function DropDown({
+  getListboxProps,
+  groupedOptions,
+  getOptionProps,
+  searchWidth,
+}) {
+  const navigate = useNavigate();
 
-    if (!groupedOptions) return null;
+  if (!groupedOptions) return null;
+            
+  return (
+    <Listbox {...getListboxProps()} sx={{ width: searchWidth || 400 }}>
+      {groupedOptions.map((option) => {
+        const artists = option.songs.map((s) => s.artists.join(","));
+        const { key, ...optionProps } = getOptionProps({ option });
 
-    return (
-        <Listbox {...getListboxProps()} sx={{ width: searchWidth || 400 }}>
-        {groupedOptions.map((option, index) => {
-            const artists = option.songs.reduce((accumulator, currentValue) => {
-            accumulator.push(...currentValue.artists);
-            return accumulator;
-            }, []);
-
-            return (
-            <ListItem
-                key={option.slug}
-                {...getOptionProps({ option, index })}
-                onClick={() => navigate(`/albumdetails/${option.id}`)}
-                className={styles.listElement}
-            >
-                <Stack sx={{ textAlign: "left", width: "100%" }}>
-                <Box sx={{ display: "flex", gap: "16px" }}>
-                    <Box
-                    component="img"
-                    src={option.image}
-                    alt={option.title}
-                    className={styles.image}
-                    />
-                    <Stack sx={{ justifyContent: "center", width: "100%" }}>
-                    <Box
-                        sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        }}
-                    >
-                        <Typography
-                        component="span"
-                        className={styles.albumTitle}
-                        sx={{ fontFamily: "Poppins" }}
-                        >
-                        {option.title}
-                        </Typography>
-                        <Typography
-                        component="span"
-                        className={styles.albumTitle}
-                        sx={{ fontFamily: "Poppins" }}
-                        >
-                        {option.follows} Follows
-                        </Typography>
-                    </Box>
+        return (
+          <ListItem
+            key={key}
+            {...optionProps}
+            onClick={() => navigate(`/albumdetails/${option.id}`)}
+            className={styles.listElement}
+          >
+            <Stack sx={{ textAlign: "left", width: "100%" }}>
+              <Box sx={{ display: "flex", gap: "16px" }}>
+                <Box
+                  component="img"
+                  src={option.image}
+                  alt={option.title}
+                  className={styles.image}
+                />
+                <Stack sx={{ justifyContent: "center", width: "100%" }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
                     <Typography
-                        component="span"
-                        className={styles.albumArtists}
-                        sx={{ fontFamily: "Poppins" }}
+                      component="span"
+                      className={styles.albumTitle}
+                      sx={{ fontFamily: "Poppins" }}
                     >
-                        {truncate(artists.join(", "), 40)}
+                      {option.title}
                     </Typography>
-                    </Stack>
-                </Box>
+                    <Typography
+                      component="span"
+                      className={styles.albumTitle}
+                      sx={{ fontFamily: "Poppins" }}
+                    >
+                      {option.follows} Follows
+                    </Typography>
+                  </Box>
+                  <Typography
+                    component="span"
+                    className={styles.albumArtists}
+                    sx={{ fontFamily: "Poppins" }}
+                  >
+                    {truncate(artists.join(", "), 40)}
+                  </Typography>
                 </Stack>
-            </ListItem>
-            );
-        })}
-        </Listbox>
-    );
+              </Box>
+            </Stack>
+          </ListItem>
+        );
+      })}
+    </Listbox>
+  );
 }
