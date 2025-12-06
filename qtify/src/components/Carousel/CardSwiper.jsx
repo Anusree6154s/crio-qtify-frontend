@@ -24,9 +24,9 @@ function CardSwiper({ data, songs }) {
         800: { slidesPerView: 5, spaceBetween: 30 },
         1024: { slidesPerView: 6, spaceBetween: 30 },
         1440: { slidesPerView: 7, spaceBetween: 30 },
-        1640: { slidesPerView: 8  , spaceBetween: 30 },
+        1640: { slidesPerView: 8, spaceBetween: 30 },
       }}
-      spaceBetween={10}   
+      spaceBetween={10}
       loop={true}
       navigation={true}
       modules={[Navigation]}
@@ -65,4 +65,4 @@ function CardSwiper({ data, songs }) {
   );
 }
 
-export default React.memo(CardSwiper);
+export default CardSwiper;

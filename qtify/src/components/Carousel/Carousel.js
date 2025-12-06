@@ -12,13 +12,14 @@ export default function Carousel({ data, songs = false, genres }) {
 
   return (
     <Grid item xs={12}>
-      {!songs && <CardSwiper data={data} />}
+      {!songs && <CardSwiper data={data} songs={songs} />}
       {songs && (
         <SongsSection
           value={value}
-          handleChange={setValue}
+          setValue={setValue}
           genres={genres}
           data={data}
+          songs={songs}
         />
       )}
     </Grid>

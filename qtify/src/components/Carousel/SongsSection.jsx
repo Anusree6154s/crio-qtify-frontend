@@ -4,12 +4,13 @@ import TabPanel from "@mui/lab/TabPanel";
 import { Box, Tab } from "@mui/material";
 import CardSwiper from "./CardSwiper";
 
-export default function SongsSection({ value, handleChange, genres, data }) {
+export default function SongsSection({ value, setValue, genres, data, songs }) {
+
   return (
     <Box sx={{ width: "100%", typography: "body1" }}>
       <TabContext value={value}>
         <TabList
-          onChange={handleChange}
+          onChange={(_, newValue) => setValue(newValue)}
           TabIndicatorProps={{
             style: { backgroundColor: "var(--color-primary)" },
           }}
@@ -36,13 +37,14 @@ export default function SongsSection({ value, handleChange, genres, data }) {
         </TabList>
 
         <TabPanel value="all">
-          <CardSwiper data={data} />
+          <CardSwiper data={data} songs={songs} />
         </TabPanel>
 
         {genres?.map((genre) => (
           <TabPanel key={genre.key} value={genre.key}>
             <CardSwiper
               data={data?.filter((item) => item.genre.key === genre.key)}
+              songs={songs}
             />
           </TabPanel>
         ))}
