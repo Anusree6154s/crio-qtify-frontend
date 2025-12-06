@@ -1,16 +1,18 @@
 .container {
-  padding: 3%;
+  padding: 20px;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .title {
   color: #fff;
-  font-weight: bold;
-  font-size: 20px !important;
+  font-weight: 600;
+  font-size: 18px !important;
+  font-family: "Poppins" !important;
 }
 
 .collapseButton {
@@ -19,7 +21,9 @@
   color: var(--color-primary) !important;
   font-weight: 600;
   cursor: pointer;
-  font-size: 20px !important;
+  font-size: 18px !important;
+  text-transform: none !important;
+  font-family: "Poppins" !important;
 }
 
 .collapseButton:hover {
@@ -50,7 +54,7 @@ h2 {
   border: 1px solid white;
   border-radius: 10px !important;
   overflow: hidden;
-  background: white!important;
+  background: white !important;
 }
 
 .faqAccordionSummary {
