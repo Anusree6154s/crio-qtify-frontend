@@ -1,38 +1,16 @@
 import { useAutocomplete } from "@mui/base/useAutocomplete";
-import { ListItem, Stack, Typography } from "@mui/material";
-import { Box, styled } from "@mui/system";
+import { IconButton, InputBase } from "@mui/material";
+import { Box } from "@mui/system";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as SearchIcon } from "../../assets/search-icon.svg";
-import { truncate } from "../../helpers/helpers";
+import SearchIcon from "../../assets/search-icon.svg";
+import DropDown from "./DropDown";
 import styles from "./Search.module.css";
 
-const Listbox = styled("ul")({
-  width: "100%",
-  margin: 0,
-  padding: 0,
-  position: "absolute",
-  borderRadius: "0px 0px 10px 10px",
-  border: "1px solid var(--color-primary)",
-  height: "max-content",
-  maxHeight: "300px",
-  zIndex: 10,
-  overflowY: "auto",
-  listStyle: "none",
-  backgroundColor: "var(--color-black)",
-  color: "white",
-  "& li.Mui-focused": {
-    backgroundColor: "#2d2d2dff",
-    color: "white",
-    cursor: "pointer",
-  },
-  "& li:active": {
-    backgroundColor: "#363636ff",
-    color: "white",
-  },
-  scrollbarWidth: "thin",
-});
+function Search({ searchData, placeholder, sx, maxWidth }) {
+  const searchRef = useRef(null);
+  const [searchWidth, setSearchWidth] = useState(null);
 
-function Search({ searchData, placeholder }) {
   const {
     getRootProps,
     getInputLabelProps,
@@ -53,103 +31,61 @@ function Search({ searchData, placeholder }) {
     navigate(`/album/${value.slug}`);
   };
 
+  useEffect(() => {
+    if (searchRef.current) {
+      setSearchWidth(searchRef.current.offsetWidth);
+    }
+  }, []);
+
   return (
-    <div
-      style={{
-        position: "relative",
+    <Box
+      sx={{
         width: "100%",
-        display: "flex",
         justifyContent: "center",
+        ...sx,
       }}
     >
-      <form
-        className={styles.wrapper}
-        onSubmit={(e) => onSubmit(e, value)}
-        style={{ maxWidth:  "502px" , width: "100%" }}
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: { md: "502px", xs: "400px" },
+          transition: "max-width 0.3s ease",
+          ...maxWidth
+        }}
+        ref={searchRef}
       >
-        <div {...getRootProps()} style={{ width: "100%" }}>
-          <input
+        <Box
+          component="form"
+          className={styles.wrapper}
+          onSubmit={(e) => onSubmit(e, value)}
+        >
+          <InputBase
             name="album"
             className={styles.search}
             placeholder={placeholder}
             required
+            {...getRootProps()}
             {...getInputProps()}
-            style={{ width: "100%" }}
+            {...getInputLabelProps()}
           />
-        </div>
-        <div>
-          <button className={styles.searchButton} type="submit">
-            <SearchIcon />
-          </button>
-        </div>
-      </form>
-      {groupedOptions.length > 0 && (
-        <Listbox {...getListboxProps()}>
-          {groupedOptions.map((option, index) => {
-            const artists = option.songs.reduce((accumulator, currentValue) => {
-              accumulator.push(...currentValue.artists);
-              return accumulator;
-            }, []);
+          <IconButton type="submit" className={styles.searchButton}>
+            <Box
+              component="img"
+              src={SearchIcon}
+              alt="search-icon"
+              sx={{ height: "18px" }}
+            />
+          </IconButton>
+        </Box>
 
-            return (
-              <ListItem
-                key={option.slug}
-                {...getOptionProps({ option, index })}
-                onClick={() => navigate(`/albumdetails/${option.id}`)}
-                className={styles.listElement}
-              >
-                <Stack sx={{ textAlign: "left", width: "100%" }}>
-                  <Box sx={{ display: "flex", gap: "16px" }}>
-                    <Box
-                      component="img"
-                      src={option.image}
-                      alt={option.title}
-                      sx={{
-                        width: "66px",
-                        height: "71px",
-                        borderRadius: "10px",
-                        borderWidth: "5px",
-                        border: "5px solid #1D1D1D",
-                      }}
-                    />
-                    <Stack sx={{ justifyContent: "center", width: "100%" }}>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <Typography
-                          component="span"
-                          className={styles.albumTitle}
-                          sx={{ fontFamily: "Poppins" }}
-                        >
-                          {option.title}
-                        </Typography>
-                        <Typography
-                          component="span"
-                          className={styles.albumTitle}
-                          sx={{ fontFamily: "Poppins" }}
-                        >
-                          {option.follows} Follows
-                        </Typography>
-                      </Box>
-                      <Typography
-                        component="span"
-                        className={styles.albumArtists}
-                        sx={{ fontFamily: "Poppins" }}
-                      >
-                        {truncate(artists.join(", "), 40)}
-                      </Typography>
-                    </Stack>
-                  </Box>
-                </Stack>
-              </ListItem>
-            );
-          })}
-        </Listbox>
-      )}
-    </div>
+        <DropDown
+          getListboxProps={getListboxProps}
+          groupedOptions={groupedOptions}
+          getOptionProps={getOptionProps}
+          searchWidth={searchWidth}
+        />
+      </Box>
+    </Box>
   );
 }
 

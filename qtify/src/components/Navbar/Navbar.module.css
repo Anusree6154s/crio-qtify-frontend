@@ -20,9 +20,34 @@
   font-family: var(--font-family);
 }
 
+.modal .stack {
+  gap: 33px;
+}
+
 .modal .stack > div {
   width: 100%;
 }
+
+/* Label when focused */
+.modal label.Mui-focused {
+  color: var(--color-primary);
+}
+
+/* Outlined input root when focused */
+.modal .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: var(--color-primary);
+}
+
+/* The actual text input when focused */
+.modal .MuiInputBase-input.Mui-focused {
+  color: var(--color-primary);
+}
+
+/* Hover state for the outline */
+.modal .MuiOutlinedInput-root:hover fieldset {
+  border-color: var(--color-primary);
+}
+
 
 .modal fieldset {
   border-color: var(--color-primary);

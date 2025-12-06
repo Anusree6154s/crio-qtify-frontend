@@ -1,24 +1,10 @@
-import { Close } from "@mui/icons-material";
-import { Box, Button, Stack, Typography } from "@mui/material";
-import Modal from "@mui/material/Modal";
-import TextField from "@mui/material/TextField";
+import { Box } from "@mui/material";
 import React from "react";
 import CustomButton from "../Button/Button";
 import Logo from "../Logo/Logo";
 import Search from "../Search/Search";
+import FeedbackModal from "./FeedbackModal";
 import styles from "./Navbar.module.css";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
 
 function Navbar({ data }) {
   const [open, setOpen] = React.useState(false);
@@ -27,118 +13,40 @@ function Navbar({ data }) {
 
   return (
     <>
-      <Box component="nav" className={styles.navbar}>
-        <Logo />
+      <Box
+        component="nav"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          backgroundColor: "var(--color-primary)",
+          paddingBottom: { xs: "8px", sm: "0px" },
+        }}
+      >
+        <Box className={styles.navbar}>
+          <Logo />
+          <Search
+            placeholder="Search an album of your choice"
+            searchData={data.new.concat(data.top)}
+            sx={{
+              display: "flex",
+              opacity: { sm: 1, xs: 0 },
+              pointerEvents: { sm: "auto", xs: "none" },
+              transition: "opacity 0.05s ease",
+            }}
+          />
+          <CustomButton onClick={() => setOpen(true)}>
+            Give Feedback
+          </CustomButton>
+        </Box>
         <Search
-          placeholder="Search a song of your choice"
+          placeholder="Search an album of your choice"
           searchData={data.new.concat(data.top)}
+          sx={{ display: { sm: "none", xs: "flex" } }}
+          maxWidth={{ maxWidth: "88%" }}
         />
-        <CustomButton onClick={() => setOpen(true)}>Give Feedback</CustomButton>
       </Box>
 
-      <Modal
-        open={open}
-        onClose={() => setOpen(false)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-        className={styles.modal}
-      >
-        <Box sx={style}>
-          <Stack
-            alignItems="center"
-            className={styles.stack}
-            sx={{
-              gap: "33px",
-              // click state
-              "& label.Mui-focused": {
-                color: "var(--color-primary)",
-              },
-              "& .MuiOutlinedInput-root": {
-                "&.Mui-focused fieldset": {
-                  borderColor: "var(--color-primary)",
-                },
-              },
-              "& .MuiInputBase-input.Mui-focused": {
-                color: "var(--color-primary)",
-              },
-
-              // hover state
-              "& .MuiOutlinedInput-root:hover fieldset": {
-                borderColor: "var(--color-primary)",
-              },
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                position: "relative",
-              }}
-            >
-              <Typography
-                sx={{
-                  fontSize: "16px",
-                  fontWeight: 600,
-                  fontFamily: "Poppins",
-                }}
-              >
-                Feedback
-              </Typography>
-              <Close
-                onClick={() => setOpen(false)}
-                sx={{ position: "absolute", right: 0, cursor: "pointer" }}
-              />
-            </Box>
-            <TextField
-              id="name"
-              label="Full Name"
-              variant="outlined"
-              size="small"
-            />
-            <TextField
-              id="email"
-              label="Email ID"
-              variant="outlined"
-              size="small"
-            />
-            <TextField
-              id="subject"
-              label="Subject"
-              variant="outlined"
-              size="small"
-            />
-            <TextField
-              id="description"
-              label="Description"
-              variant="outlined"
-              size="small"
-              multiline
-              sx={{
-                "& .MuiInputBase-input": {
-                  minHeight: "136px",
-                },
-              }}
-            />
-            <Button
-              variant="contained"
-              sx={{
-                width: "192",
-                height: "53",
-                borderRadius: "12px",
-                px: "14px",
-                py: "13px",
-                boxShadow: "none",
-                fontFamily: "Poppins",
-                fontSize: "18px",
-                textTransform: "none",
-                fontWeight: "600 !important",
-              }}
-            >
-              Submit Feedback
-            </Button>
-          </Stack>
-        </Box>
-      </Modal>
+      <FeedbackModal open={open} setOpen={setOpen} />
     </>
   );
 }

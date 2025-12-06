@@ -5,6 +5,11 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 30px;
+  gap: 45px;
   color: white;
+}
+
+.hero * {
+  font-family: "Poppins" !important ;
+  font-weight: 600 !important;
 }

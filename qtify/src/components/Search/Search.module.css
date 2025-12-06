@@ -1,42 +1,61 @@
 .search {
   padding: 14px 20px;
-  height: 100%;
+  height: 90%;
+  width: 100%;
   border-radius: 8px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
-  border: 1px solid var(--color-black);
+  border: 1.5px solid var(--color-black);
   box-sizing: border-box;
-  font-size: var(--font-size-base);
+  background-color: var(--color-secondary);
+  font-size: var(--font-size-base) !important;
+  font-family: "Poppins";
+}
+
+.search input::placeholder {
+  color: rgb(0, 0, 0, 0.6);
+  opacity: 1;
+  font-family: "Poppins";
+  font-size: 13px;
 }
 
 .wrapper {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   height: 40px;
 }
 
 .searchButton {
-  border-radius: 0px 8px 8px 0px;
+  border-radius: 0px 8px 8px 0px !important ;
   padding: 10px 20px;
-  height: 100%;
-  border: 1px solid var(--color-black);
-  border-left: none;
+  height: 90%;
+  border: 1.5px solid var(--color-black) !important;
+  border-left: none !important;
   cursor: pointer;
-  height: 100%;
+  background-color: var(--color-secondary) !important;
 }
 
+
+
 .listElement {
-  padding: 15px;
+  padding: 10px 15px;
   display: flex;
   justify-content: space-between;
 }
 
+.image {
+  width: 46px;
+  height: 51px;
+  border-radius: 10px;
+  border: 5px solid #1d1d1d;
+}
+
 .albumTitle {
   font-weight: 400;
-  font-size: 16px !important;
+  font-size: 13px !important;
 }
 
 .albumArtists {
   font-weight: 400;
-  font-size: 12px !important;
+  font-size: 10px !important;
 }
