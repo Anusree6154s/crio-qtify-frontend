@@ -29,6 +29,7 @@
   border-radius: 0px 8px 8px 0px !important ;
   padding: 10px 20px;
   height: 90%;
+  width: 60px;
   border: 1.5px solid var(--color-black) !important;
   border-left: none !important;
   cursor: pointer;

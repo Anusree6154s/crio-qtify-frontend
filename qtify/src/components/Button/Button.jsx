@@ -15,7 +15,7 @@ export default function CustomButton({ children, onClick }) {
           bgcolor: "var(--color-black)",
           textTransform: "none",
           fontWeight: "600 !important",
-          fontSize: "18px !important",
+          fontSize: "13px !important",
           flexShrink: 0,
           "&:hover": {
             color: "var(--color-primary)",
